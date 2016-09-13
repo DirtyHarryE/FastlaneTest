@@ -9,7 +9,7 @@ public class BuildScript
 {
     private static string[] SCENES = FindEnabledEditorScenes();
 
-    private static string APP_NAME = "ServerTest";
+    private static string APP_NAME = "FastlaneTest";
     private static string TARGET_DIR = "Build";
 
     [MenuItem("Custom/CI/Build Windows")]
