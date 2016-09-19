@@ -107,7 +107,7 @@ public class BuildScript
             PlistElementDict rootDict = plist.root;
 
             // Change value of CFBundleVersion in Xcode plist
-            var buildKey = "ITSAppUsesNonExemptEncryption ";
+            var buildKey = "ITSAppUsesNonExemptEncryption";
             rootDict.SetBoolean(buildKey, false);
 
             // Write to file
