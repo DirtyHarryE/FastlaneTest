@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEditor;
 using System;
 using System.Collections.Generic;
-
+using UnityEditor.iOS.Xcode;
+using System.IO;
 
 public class BuildScript
 {
@@ -75,5 +76,58 @@ public class BuildScript
         {
             throw new Exception("BuildPlayer failure: " + res);
         }
+
+        if (build_target == BuildTarget.iOS)
+        {
+            ChangeEncryptionPList(build_target, targetDir);
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+    public static void ChangeEncryptionPList(BuildTarget build_target, string targetDir)
+    {
+        Debug.Log("+++++++++++++++++++++++++++++++++++++++++++++++++++++\nTesting PostProcessBuild [" + build_target.ToString() + "]\n++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        if (build_target == BuildTarget.iOS)
+        {
+            // Get plist
+            string plistPath = targetDir + "/Info.plist";
+            PlistDocument plist = new PlistDocument();
+            plist.ReadFromString(File.ReadAllText(plistPath));
+
+            // Get root
+            PlistElementDict rootDict = plist.root;
+
+            // Change value of CFBundleVersion in Xcode plist
+            var buildKey = "ITSAppUsesNonExemptEncryption ";
+            rootDict.SetString(buildKey, "false");
+
+            // Write to file
+            File.WriteAllText(plistPath, plist.WriteToString());
+
+
+
+            {
+                StreamReader sr = new StreamReader(plistPath);
+                string t_OrginalPlist = sr.ReadToEnd();
+                sr.Close();
+
+                Debug.Log("\nPLIST\n" + t_OrginalPlist + "\n");
+            }
+        }
+    }
+
+
+
+
+
+
 }
