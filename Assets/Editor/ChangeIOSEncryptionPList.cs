@@ -10,6 +10,7 @@ public class ChangeIOSEncryptionPList
     [PostProcessBuild]
     public static void ChangeEncryptionPList(BuildTarget buildTarget, string pathToBuiltProject)
     {
+        Debug.Log("+++++++++++++++++++++++++++++++++++++++++++++++++++++/nTesting PostProcessBuild [" + buildTarget.ToString() + "/n++++++++++++++++++++++++++++++++++++++++++++++++++++");
         if (buildTarget == BuildTarget.iOS)
         {
             // Get plist
