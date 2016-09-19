@@ -64,7 +64,7 @@ public class IncrementBuildNo
             {
                 finalBuildPath += parts[i];
             }
-            finalBuildPath += parts[parts.Length - 1].Replace(".exe", "_Data/") + "StreamingAssets/version.txt";
+            finalBuildPath += "/PersistentBuildData/build.txt";
             Debug.Log(finalBuildPath);
             CommonUtils.WriteTextFile(finalBuildPath, buildInt.ToString());
         }
