@@ -45,7 +45,7 @@ public class BuildScript
     private static void PerformAndroidBuild()
     {
         PlayerSettings.Android.bundleVersionCode = GetBuildNumber();
-        PlayerSettings.bundleIdentifier = "com.Terahard.Teracasino";
+        //PlayerSettings.bundleIdentifier = "com.Terahard.Teracasino";
         string targetDir = APP_NAME;
         GenericBuild(SCENES, TARGET_DIR + "/Android/" + targetDir, BuildTarget.Android, BuildOptions.None);
     }
@@ -57,12 +57,11 @@ public class BuildScript
         string targetDir = APP_NAME;
         GenericBuild(SCENES, TARGET_DIR + "/Ios/" + targetDir, BuildTarget.iOS, BuildOptions.None);
     }
-    [MenuItem("Terahard/IncrementBuildNumber")]
-    private static void IncrementBuildNumberMenu()
+    [MenuItem("Terahard/Increment Build Number")]
+    private static void PerformIncrement()
     {
         IncrementBuildNumber();
     }
-
     private static string[] FindEnabledEditorScenes()
     {
         List<string> editorScenes = new List<string>();
@@ -145,7 +144,7 @@ public class BuildScript
             int i = int.Parse(buildText);
             i += 1;
             buildInt = i;
-            Debug.Log("\nBuild Incremented : " + buildInt);
+            Debug.Log("Build Incremented : " + buildInt);
 
             //save the file (overwrite the original) with the new version number
             CommonUtils.WriteTextFile(buildFileLocation, buildInt.ToString());
