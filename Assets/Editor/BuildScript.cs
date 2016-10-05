@@ -124,9 +124,9 @@ public class BuildScript
         string buildFileLocation = BuildFileLocation;
 
         bool makeNewBuildFile = false;
-        string currentVersion = PlayerSettings.bundleVersion.Trim();
-        string loadedVersion = CommonUtils.ReadTextFile(versionFileLocation).Trim();
-        if (!currentVersion.Equals(loadedVersion))
+        string currentVersion = PlayerSettings.bundleVersion;
+        string loadedVersion = CommonUtils.ReadTextFile(versionFileLocation);
+        if (string.IsNullOrEmpty(loadedVersion) || !currentVersion.Equals(loadedVersion.Trim()))
         {
             CommonUtils.WriteTextFile(versionFileLocation, currentVersion);
             makeNewBuildFile = true;
