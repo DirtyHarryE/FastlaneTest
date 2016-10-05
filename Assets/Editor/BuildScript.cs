@@ -108,14 +108,16 @@ public class BuildScript
     {
         get
         {
-            return RootFolder + "/fastlane/build.txt";
+            //return RootFolder + "/fastlane/build.txt";
+            return "fastlane/build.txt";
         }
     }
     private static string VersionFileLocation
     {
         get
         {
-            return RootFolder + "/fastlane/version.txt";
+            //return RootFolder + "/fastlane/version.txt";
+            return "fastlane/version.txt";
         }
     }
     private static void IncrementBuildNumber()
@@ -191,16 +193,6 @@ public class BuildScript
 
             // Write to file
             File.WriteAllText(plistPath, plist.WriteToString());
-
-
-
-            {
-                StreamReader sr = new StreamReader(plistPath);
-                string t_OrginalPlist = sr.ReadToEnd();
-                sr.Close();
-
-                Debug.Log("\nPLIST\n" + t_OrginalPlist + "\n");
-            }
         }
     }
 }
