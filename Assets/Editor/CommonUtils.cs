@@ -53,9 +53,9 @@ public class CommonUtils
             for (int i = 0; i < dirs.Length - 1; i++)
             {
                 str = i == 0 ? dirs[0] : str + "/" + dirs[i];
+                Debug.Log("Create|" + dirs[i] + "|" + str + ":" + (!Directory.Exists(str)));
                 if (!Directory.Exists(str))
                 {
-                    Debug.Log("Create|" + dirs[i] + "|" + str);
                     Directory.CreateDirectory(str);
                 }
             }
