@@ -50,7 +50,9 @@ public class CommonUtils
 
             string[] dirs = path.Split('/');
             string str = "";
-            for (int i = 0; i < dirs.Length - 1; i++)
+            bool lastDirAFile = dirs[dirs.Length - 1].Contains(".");
+            int length = lastDirAFile ? dirs.Length - 1 : dirs.Length;
+            for (int i = 0; i < length; i++)
             {
                 str = i == 0 ? dirs[0] : str + "/" + dirs[i];
                 Debug.Log("Create|" + dirs[i] + "|" + str + ":" + (!Directory.Exists(str)));
