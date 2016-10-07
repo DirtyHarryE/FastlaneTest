@@ -58,7 +58,6 @@ public class CommonUtils
                 }
             }
         }
-        Debug.Log("Writing a File : " + sFilePathAndName + ";");
         StreamWriter sw = new StreamWriter(sFilePathAndName);
         
         sw.WriteLine(sTextContents);

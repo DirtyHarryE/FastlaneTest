@@ -88,22 +88,6 @@ public class BuildScript
             ChangeEncryptionPList(build_target, targetDir);
         }
     }
-
-    private static string RootFolder
-    {
-        get
-        {
-            string path = Application.dataPath;
-            string[] components = path.Split('/');
-            string newPath = "";
-            for (int i = 0; i < components.Length -1; i++)
-            {
-                newPath = string.IsNullOrEmpty(newPath) ? components[i] : newPath + "/" + components[i];
-            }
-            return newPath;
-        }
-    }
-
     private static string BuildFileLocation
     {
         get
