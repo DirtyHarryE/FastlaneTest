@@ -42,6 +42,24 @@ public class CommonUtils
         return fileContents;
     }
 
+    public static void CreateDirectory(string path)
+    {
+        if (!File.Exists(path))
+        {
+
+            string[] dirs = path.Split('/');
+            string str = "";
+            for (int i = 0; i < dirs.Length - 1; i++)
+            {
+                str = i == 0 ? dirs[0] : str + "/" + dirs[i];
+                if (!Directory.Exists(str))
+                {
+                    Directory.CreateDirectory(str);
+                }
+            }
+        }
+    }
+
     public static void WriteTextFile(string sFilePathAndName, string sTextContents)
     {
         if (!File.Exists(sFilePathAndName))

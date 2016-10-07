@@ -10,35 +10,43 @@ public class BuildScript
 {
     private static string[] SCENES = FindEnabledEditorScenes();
 
-    private static string APP_NAME = "FastlaneTest";
+    private static string APP_NAME = "UnityProject";
     private static string TARGET_DIR = "Build";
 
     [MenuItem("Custom/CI/Build Windows")]
     private static void PerformWindowsBuild()
     {
         string targetDir = APP_NAME + ".exe";
-        GenericBuild(SCENES, TARGET_DIR + "/PC/" + targetDir, BuildTarget.StandaloneWindows, BuildOptions.None);
+        string path = TARGET_DIR + "/PC";
+        CommonUtils.CreateDirectory(path);
+        GenericBuild(SCENES, path + "/" + targetDir, BuildTarget.StandaloneWindows, BuildOptions.None);
     }
 
     [MenuItem("Custom/CI/Build Windows Phone")]
     private static void PerformWindowsStoreBuild()
     {
         string targetDir = APP_NAME + ".exe";
-        GenericBuild(SCENES, TARGET_DIR + "/WindowsPhone/" + targetDir, BuildTarget.WP8Player, BuildOptions.None);
+        string path = TARGET_DIR + "/WindowsPhone";
+        CommonUtils.CreateDirectory(path);
+        GenericBuild(SCENES, path + "/" + targetDir, BuildTarget.WP8Player, BuildOptions.None);
     }
 
     [MenuItem("Custom/CI/Build Mac OS X")]
     private static void PerformMacOSXBuild()
     {
         string targetDir = APP_NAME + ".app";
-        GenericBuild(SCENES, TARGET_DIR + "/MacOS/" + targetDir, BuildTarget.StandaloneOSXIntel, BuildOptions.None);
+        string path = TARGET_DIR + "/MacOS";
+        CommonUtils.CreateDirectory(path);
+        GenericBuild(SCENES, path + "/" + targetDir, BuildTarget.StandaloneOSXIntel, BuildOptions.None);
     }
 
     [MenuItem("Custom/CI/Build Web")]
     private static void PerformWebBuild()
     {
         string targetDir = APP_NAME + ".unity3d";
-        GenericBuild(SCENES, TARGET_DIR + "/Web/" + targetDir, BuildTarget.WebPlayer, BuildOptions.None);
+        string path = TARGET_DIR + "/Web";
+        CommonUtils.CreateDirectory(path);
+        GenericBuild(SCENES, path + "/" + targetDir, BuildTarget.WebPlayer, BuildOptions.None);
     }
 
     [MenuItem("Custom/CI/Build Android")]
@@ -47,7 +55,9 @@ public class BuildScript
         PlayerSettings.Android.bundleVersionCode = GetBuildNumber();
         //PlayerSettings.bundleIdentifier = "com.Terahard.Teracasino";
         string targetDir = APP_NAME;
-        GenericBuild(SCENES, TARGET_DIR + "/Android/" + targetDir, BuildTarget.Android, BuildOptions.None);
+        string path = TARGET_DIR + "/Android";
+        CommonUtils.CreateDirectory(path);
+        GenericBuild(SCENES, path + "/" + targetDir, BuildTarget.Android, BuildOptions.None);
     }
 
     [MenuItem("Custom/CI/Build iOS")]
@@ -55,7 +65,9 @@ public class BuildScript
     {
         PlayerSettings.iOS.buildNumber = GetBuildNumber().ToString();
         string targetDir = APP_NAME;
-        GenericBuild(SCENES, TARGET_DIR + "/Ios/" + targetDir, BuildTarget.iOS, BuildOptions.None);
+        string path = TARGET_DIR + "/Ios";
+        CommonUtils.CreateDirectory(path);
+        GenericBuild(SCENES, path + "/" + targetDir, BuildTarget.iOS, BuildOptions.None);
     }
     [MenuItem("Terahard/Increment Build Number")]
     private static void PerformIncrement()
@@ -92,7 +104,6 @@ public class BuildScript
     {
         get
         {
-            //return RootFolder + "/fastlane/build.txt";
             return "fastlane/build.txt";
         }
     }
@@ -100,7 +111,6 @@ public class BuildScript
     {
         get
         {
-            //return RootFolder + "/fastlane/version.txt";
             return "fastlane/version.txt";
         }
     }
