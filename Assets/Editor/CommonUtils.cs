@@ -44,7 +44,8 @@ public class CommonUtils
 
     public static void CreateDirectory(string path)
     {
-        if (!File.Exists(path))
+        Debug.Log("Creating new Path : " + path);
+        if (!File.Exists(path) || !Directory.Exists(path))
         {
 
             string[] dirs = path.Split('/');
