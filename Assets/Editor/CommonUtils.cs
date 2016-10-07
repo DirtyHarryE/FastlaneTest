@@ -55,6 +55,7 @@ public class CommonUtils
                 str = i == 0 ? dirs[0] : str + "/" + dirs[i];
                 if (!Directory.Exists(str))
                 {
+                    Debug.Log("Create|" + dirs[i] + "|" + str);
                     Directory.CreateDirectory(str);
                 }
             }
@@ -63,20 +64,7 @@ public class CommonUtils
 
     public static void WriteTextFile(string sFilePathAndName, string sTextContents)
     {
-        if (!File.Exists(sFilePathAndName))
-        {
-
-            string[] dirs = sFilePathAndName.Split('/');
-            string str = "";
-            for (int i = 0; i < dirs.Length - 1; i++)
-            {
-                str = i == 0 ? dirs[0] : str + "/" + dirs[i];
-                if (!Directory.Exists(str))
-                {
-                    Directory.CreateDirectory(str);
-                }
-            }
-        }
+        CreateDirectory(sFilePathAndName);
         StreamWriter sw = new StreamWriter(sFilePathAndName);
         
         sw.WriteLine(sTextContents);
